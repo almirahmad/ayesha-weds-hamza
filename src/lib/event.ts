@@ -48,6 +48,24 @@ export const EVENT = {
   guestNoteTitle: "Dear Guests",
   guestNote:
     "It means the world that you are traveling the distance for us. Safe travels on the road, and we'll see you at the finish line!",
+  waleema: {
+    title: "The Waleema",
+    marriageOf: "Marriage of",
+    honor:
+      "The honor of your presence is requested at a reception celebrating the",
+    note: "Please join us for an evening of elegance and celebration.",
+    dateFormal: "Sunday, the 11th of October, 2026",
+    dinner: "Dinner at 8 o’clock in the evening",
+    dateLabel: "Sunday, 11th October 2026",
+    timeLabel: "08:00 PM",
+    startsAt: "2026-10-11T20:00:00+05:00",
+    venueName: "Central Palace Marquees & FarmHouse",
+    venueCity: "Lahore",
+    venueLines: ["Lahore-Kasur Road", "Central Park Housing Scheme, Lahore"],
+    mapsLink: "https://maps.app.goo.gl/Q69QW95YG1LmUhpEA?g_st=ic",
+    mapsEmbed:
+      "https://www.openstreetmap.org/export/embed.html?bbox=74.220%2C31.360%2C74.280%2C31.410&layer=mapnik&marker=31.385%2C74.250",
+  },
 } as const;
 
 export type ScheduleIcon = "car" | "heart" | "dinner" | "flower";
@@ -55,26 +73,27 @@ export type ScheduleIcon = "car" | "heart" | "dinner" | "flower";
 export const VENUES = [
   {
     id: "lahore",
-    name: "Central Palace Marquees & Farm House",
+    name: EVENT.waleema.venueName,
     city: "Lahore",
-    lines: ["Lahore – Kasur Road", "Central Park Housing Scheme, Lahore"],
-    mapsLink:
-      "https://www.google.com/maps/search/?api=1&query=Central+Palace+Marquees+Farm+House+Central+Park+Housing+Scheme+Lahore+Kasur+Road",
-    mapsEmbed:
-      "https://www.openstreetmap.org/export/embed.html?bbox=74.220%2C31.360%2C74.280%2C31.410&layer=mapnik&marker=31.385%2C74.250",
+    lines: EVENT.waleema.venueLines,
+    mapsLink: EVENT.waleema.mapsLink,
+    mapsEmbed: EVENT.waleema.mapsEmbed,
     image: "/images/farmhouse.jpg",
     imageAlt: "Garden farmhouse marquee at golden hour",
-    events: "Mehndi & Walema",
+    events: "Mehndi & Waleema",
   },
   {
     id: "pakpattan",
     name: "Royal Grand Marquee",
     city: "Pakpattan",
-    lines: ["Near Fruit & Vegetable Market, Depalpur Road", "Pākpattan, 57400"],
+    lines: [
+      "Near Fruit & Vegetable Market, Depalpur Road",
+      "Pākpattan, 57400",
+    ],
     mapsLink: EVENT.mapsLink,
     mapsEmbed: EVENT.mapsEmbed,
-    image: "/images/marquee.jpg",
-    imageAlt: "Evening view of a cream wedding marquee in a garden",
+    image: "",
+    imageAlt: "",
     events: "Baraat Ceremony",
   },
 ] as const;
@@ -104,13 +123,13 @@ export const CELEBRATIONS = [
   },
   {
     id: "walema",
-    title: "The Walema",
-    dateLabel: "Sunday, 11th October 2026",
-    timeLabel: "01:00 PM onwards",
-    startsAt: "2026-10-11T13:00:00+05:00",
+    title: EVENT.waleema.title,
+    dateLabel: EVENT.waleema.dateLabel,
+    timeLabel: EVENT.waleema.timeLabel,
+    startsAt: EVENT.waleema.startsAt,
     venueId: "lahore" as const,
     icon: "dinner" as const,
-    note: "Join us for the wedding reception.",
+    note: EVENT.waleema.note,
     timeline: [] as { time: string; title: string; icon: ScheduleIcon }[],
   },
 ] as const;
@@ -120,6 +139,7 @@ export const NAV = [
   { id: "invitation", label: "Invitation" },
   { id: "schedule", label: "Schedule" },
   { id: "venue", label: "Venue" },
+  { id: "waleema", label: "Waleema" },
   { id: "family", label: "Family" },
 ] as const;
 

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import {
   CarFront,
+  Download,
   Flower2,
   Heart,
   MapPin,
@@ -126,6 +127,7 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
 
         {variant === "all" ? <AllEvents /> : <BaraatSchedule />}
         {variant === "all" ? <AllVenues /> : <BaraatVenue />}
+        {variant === "all" ? null : <WaleemaSection />}
 
         <Section id="family">
           <p className="section-label text-center">Family & Contacts</p>
@@ -204,8 +206,16 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
             {EVENT.bride} & {EVENT.groom}
           </p>
           <p className="mt-1 font-display text-xs tracking-[0.28em] text-gold uppercase">
-            {variant === "all" ? "08 · 10 · 11 · 2026" : "10 · 10 · 2026"}
+            {variant === "all" ? "08 · 10 · 11 · 2026" : "10 · 11 · 2026"}
           </p>
+          <a
+            href="/itba-ayesha-hamza-invitation.pdf"
+            download="Itba-Ayesha-Rana-Hamza-Invitation.pdf"
+            className="tap-open mx-auto mt-6 gap-2 tracking-[0.14em] normal-case print:hidden"
+          >
+            <Download className="size-3.5" strokeWidth={1.75} />
+            Download PDF
+          </a>
         </footer>
       </div>
     </div>
@@ -252,11 +262,6 @@ function BaraatVenue() {
       </h2>
       <Flourish className="mt-4 mb-6" />
       <div className="gold-frame overflow-hidden rounded-xl bg-ivory">
-        <img
-          src="/images/marquee.jpg"
-          alt="Evening view of a cream wedding marquee in a garden"
-          className="h-52 w-full object-cover outline outline-1 -outline-offset-1 outline-ink/10 sm:h-64"
-        />
         <div className="px-5 py-5 text-center">
           <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
             <MapPin className="size-3.5" strokeWidth={1.75} />
@@ -280,6 +285,66 @@ function BaraatVenue() {
         <iframe
           title="Venue map for Royal Grand Marquee, Pakpattan"
           src={EVENT.mapsEmbed}
+          className="map-frame rounded-none"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </Section>
+  );
+}
+
+function WaleemaSection() {
+  const waleema = EVENT.waleema;
+
+  return (
+    <Section id="waleema">
+      <p className="section-label text-center">{waleema.title}</p>
+      <Flourish className="mt-4 mb-8" />
+      <p className="mx-auto max-w-md text-center font-display text-lg leading-relaxed text-ink">
+        {waleema.honor}
+      </p>
+      <p className="section-label mt-6 text-center">{waleema.marriageOf}</p>
+      <p className="waleema-couple mt-4 text-center">{EVENT.bride}</p>
+      <p className="waleema-amp mt-1 text-center" aria-hidden>
+        &
+      </p>
+      <p className="waleema-couple mt-1 text-center">{EVENT.groom}</p>
+      <p className="waleema-date mt-8 text-center font-display text-xl sm:text-2xl">
+        {waleema.dateFormal}
+      </p>
+      <p className="mt-3 text-center font-display text-base font-medium tracking-wide text-burgundy">
+        {waleema.dinner}
+      </p>
+      <Flourish className="mt-8 mb-6" />
+      <div className="gold-frame overflow-hidden rounded-xl bg-ivory">
+        <div className="px-5 py-5 text-center">
+          <p className="section-label">Venue</p>
+          <h3 className="mt-3 font-display text-2xl font-medium text-ink">
+            {waleema.venueName}
+          </h3>
+          <p className="mt-2 inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+            <MapPin className="size-3.5" strokeWidth={1.75} />
+            {waleema.venueCity}
+          </p>
+          {waleema.venueLines.map((line) => (
+            <p key={line} className="mt-1 font-display text-base leading-relaxed text-ink">
+              {line}
+            </p>
+          ))}
+          <a
+            href={waleema.mapsLink}
+            target="_blank"
+            rel="noreferrer"
+            className="tap-open mx-auto mt-5 gap-2 tracking-[0.14em] normal-case"
+          >
+            <Navigation className="size-3.5" strokeWidth={1.75} />
+            Open Maps
+          </a>
+        </div>
+        <iframe
+          title={`Venue map for ${waleema.venueName}`}
+          src={waleema.mapsEmbed}
           className="map-frame rounded-none"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -360,11 +425,13 @@ function AllVenues() {
       <div className="space-y-8">
         {VENUES.map((venue) => (
           <div key={venue.id} className="gold-frame overflow-hidden rounded-xl bg-ivory">
-            <img
-              src={venue.image}
-              alt={venue.imageAlt}
-              className="h-52 w-full object-cover outline outline-1 -outline-offset-1 outline-ink/10 sm:h-64"
-            />
+            {venue.image ? (
+              <img
+                src={venue.image}
+                alt={venue.imageAlt}
+                className="h-52 w-full object-cover outline outline-1 -outline-offset-1 outline-ink/10 sm:h-64"
+              />
+            ) : null}
             <div className="px-5 py-5 text-center">
               <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
                 <MapPin className="size-3.5" strokeWidth={1.75} />

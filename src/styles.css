@@ -21,6 +21,7 @@
 
   --text-calligraphy: clamp(2.85rem, 11vw, 4.6rem);
   --text-script-md: clamp(1.65rem, 4.6vw, 2.25rem);
+  --text-waleema-name: clamp(2.45rem, 8.6vw, 3.7rem);
   --text-arabic: clamp(1.35rem, 3.4vw, 1.75rem);
 
   --radius-sm: 8px;
@@ -217,6 +218,28 @@
   line-height: 1.05;
   color: var(--color-burgundy);
   font-weight: 400;
+}
+
+.waleema-couple {
+  font-family: var(--font-script);
+  font-size: var(--text-waleema-name);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--color-burgundy);
+  -webkit-text-stroke: 0.4px var(--color-burgundy);
+}
+
+.waleema-amp {
+  font-family: var(--font-script);
+  font-size: clamp(1.7rem, 5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-gold);
+}
+
+.waleema-date {
+  color: var(--color-ink);
+  font-weight: 600;
 }
 
 .host-script {
@@ -587,4 +610,42 @@
 .nasheed-btn[aria-pressed="true"] {
   color: var(--color-ivory);
   background: var(--color-burgundy);
+}
+
+@media print {
+  .nav-bar,
+  .nasheed-btn,
+  .nasheed-frame,
+  .sky-life,
+  .paper-wash,
+  .map-frame {
+    display: none !important;
+  }
+
+  .invite-enter,
+  .petal,
+  .butterfly,
+  .butterfly-wings,
+  .wax-seal {
+    animation: none !important;
+  }
+
+  html,
+  body {
+    background: white;
+  }
+
+  a.tap-open {
+    box-shadow: none;
+  }
+
+  section {
+    padding-top: 1.1rem !important;
+    padding-bottom: 1.1rem !important;
+    break-inside: avoid;
+  }
+
+  footer {
+    padding-bottom: 1.5rem !important;
+  }
 }
