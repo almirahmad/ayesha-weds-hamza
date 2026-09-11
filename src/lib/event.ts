@@ -41,8 +41,7 @@ export const EVENT = {
   ],
   specialLove: "Almir, Minha, Muhammad, Mahad, Rohan & Hanaa",
   specialLoveLabel: "Our little peeps",
-  belovedNano: "Mrs. Khurshid Bano",
-  belovedNanoUrdu: "خورشید بانو",
+  belovedNano: "محترمہ خورشید بانو",
   contacts: [
     { name: "Haji Makhan", phone: "0306-1614928", tel: "+923061614928" },
     { name: "Rana Ahmad", phone: "0304-2463055", tel: "+923042463055" },
