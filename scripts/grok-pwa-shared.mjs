@@ -82,7 +82,10 @@ export function appNameFromHost(hostHeader) {
 }
 
 /** True for Vercel system domains. Envoy rewrites origin Host to these; they SSO-protect `/og.jpg`. */
+const PUBLIC_VERCEL_OG_HOSTS = new Set(["ayesha-weds-hamza.vercel.app"]);
+
 function isVercelSystemHost(host) {
+  if (PUBLIC_VERCEL_OG_HOSTS.has(host)) return false;
   return (
     host === "vercel.app" ||
     host.endsWith(".vercel.app") ||
@@ -364,6 +367,7 @@ export function grokOgHeadTags({
     tags.push(`<meta property="og:image" content="${escapeHtml(image)}">`);
     tags.push(`<meta property="og:image:width" content="1200">`);
     tags.push(`<meta property="og:image:height" content="630">`);
+    tags.push(`<meta name="twitter:image" content="${escapeHtml(image)}">`);
     const banner = String(site.banner ?? "").trim();
     if (banner) {
       const bannerUrl = `https://${publicHost}${banner.startsWith("/") ? banner : `/${banner}`}`;

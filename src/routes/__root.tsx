@@ -19,6 +19,16 @@ export const Route = createRootRoute({
           "With the blessings of their parents, Ahmad and Meerat invite you to the wedding of Itba Ayesha and Hamza Iftikhar — 10 October 2026, Royal Grand Marquee, Pakpattan.",
       },
       { name: "theme-color", content: "#F6F0E6" },
+      {
+        property: "og:image",
+        content: "https://ayesha-weds-hamza.vercel.app/og.jpg",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        name: "twitter:image",
+        content: "https://ayesha-weds-hamza.vercel.app/og.jpg",
+      },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
