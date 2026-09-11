@@ -1,4 +1,4 @@
-export type InviteVariant = "baraat" | "all";
+export type InviteVariant = "baraat" | "all" | "baraatOnly";
 
 export const EVENT = {
   bride: "Itba Ayesha",
@@ -142,6 +142,14 @@ export const NAV = [
   { id: "schedule", label: "Schedule" },
   { id: "venue", label: "Venue" },
   { id: "waleema", label: "Waleema" },
+  { id: "family", label: "Family" },
+] as const;
+
+export const NAV_BARAAT = [
+  { id: "blessings", label: "Blessings" },
+  { id: "invitation", label: "Invitation" },
+  { id: "schedule", label: "Schedule" },
+  { id: "venue", label: "Venue" },
   { id: "family", label: "Family" },
 ] as const;
 
