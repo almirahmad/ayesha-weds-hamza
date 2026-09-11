@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import {
   ALL_NAV,
+  BARAAT_NAV,
   CELEBRATIONS,
   EVENT,
   NAV,
@@ -38,17 +39,20 @@ function Section({ id, children }: { id: string; children: ReactNode }) {
   );
 }
 
-export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant }) {
+export function InvitationPage({ variant = "home" }: { variant?: InviteVariant }) {
   const upcoming = variant === "all" ? nextCelebration() : null;
   const countdownLabel = upcoming
     ? `Until ${upcoming.title}`
     : "The celebration begins in";
+  const navItems = variant === "all" ? ALL_NAV : variant === "baraat" ? BARAAT_NAV : NAV;
+  const footerDates =
+    variant === "all" ? "08 · 10 · 11 · 2026" : variant === "home" ? "10 · 11 · 2026" : "10 · 2026";
 
   return (
     <div className="invite-enter relative min-h-dvh">
       <div className="paper-wash" />
       <div className="relative mx-auto max-w-3xl">
-        <StickyNav items={variant === "all" ? ALL_NAV : NAV} />
+        <StickyNav items={navItems} />
 
         <header className="px-5 pt-10 pb-4 text-center sm:pt-12">
           <p className="urdu-block text-3xl text-burgundy sm:text-4xl">دعوت نامہ</p>
@@ -75,7 +79,7 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
             کو اس کی شادی کی مبارک باد دیتے تو فرماتے:
           </p>
           <p className="arabic-block mx-auto mt-5 max-w-lg text-center text-burgundy">
-            بَارَکَ اللَّهُ لَکَ وَبَارَکَ عَلَیْکَ وَجَمَعَ بَیْنَکُمَا فِیْ خَیْرٍ
+            بَارَکَ اللَّهُ لَکَ وَبَارَکَ عَلَیْکَ وَجَمَعَ بَیْنِکُمَا فِیْ خَیْرٍ
           </p>
           <p className="mt-3 text-center font-display text-xs tracking-wide text-gold">
             سنن ابی داؤد: 2130
@@ -127,7 +131,7 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
 
         {variant === "all" ? <AllEvents /> : <BaraatSchedule />}
         {variant === "all" ? <AllVenues /> : <BaraatVenue />}
-        {variant === "all" ? null : <WaleemaSection />}
+        {variant === "home" ? <WaleemaSection /> : null}
 
         <Section id="family">
           <p className="section-label text-center">Family & Contacts</p>
@@ -156,11 +160,12 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
 
           <article className="family-card mt-6">
             <p className="section-label">Special love</p>
+            <p className="kids-script mt-2 inline-flex items-center gap-2">
+              {EVENT.specialLove}
+              <Heart className="size-4 text-rose" fill="currentColor" strokeWidth={1.5} />
+            </p>
             <p className="section-label mt-6">Our Beloved Nano</p>
             <p className="host-script mt-2">{EVENT.belovedNano}</p>
-            <p className="urdu-block mt-2 text-burgundy">{EVENT.belovedNanoUrdu}</p>
-            <p className="section-label mt-8">{EVENT.specialLoveLabel}</p>
-            <p className="kids-script mt-2">{EVENT.specialLove}</p>
           </article>
 
           <p className="section-label mt-12 text-center">Contact for guidance</p>
@@ -205,7 +210,7 @@ export function InvitationPage({ variant = "baraat" }: { variant?: InviteVariant
             {EVENT.bride} & {EVENT.groom}
           </p>
           <p className="mt-1 font-display text-xs tracking-[0.28em] text-gold uppercase">
-            {variant === "all" ? "08 · 10 · 11 · 2026" : "10 · 11 · 2026"}
+            {footerDates}
           </p>
           <a
             href="/itba-ayesha-hamza-invitation.pdf"
@@ -262,7 +267,7 @@ function BaraatVenue() {
       <Flourish className="mt-4 mb-6" />
       <div className="gold-frame overflow-hidden rounded-xl bg-ivory">
         <div className="px-5 py-5 text-center">
-          <p className="inline-flex items-center justify-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+          <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
             <MapPin className="size-3.5" strokeWidth={1.75} />
             Pakpattan
           </p>
@@ -322,7 +327,7 @@ function WaleemaSection() {
           <h3 className="mt-3 font-display text-2xl font-medium text-ink">
             {waleema.venueName}
           </h3>
-          <p className="mt-2 inline-flex items-center justify-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+          <p className="mt-2 inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
             <MapPin className="size-3.5" strokeWidth={1.75} />
             {waleema.venueCity}
           </p>
@@ -432,7 +437,7 @@ function AllVenues() {
               />
             ) : null}
             <div className="px-5 py-5 text-center">
-              <p className="inline-flex items-center justify-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+              <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
                 <MapPin className="size-3.5" strokeWidth={1.75} />
                 {venue.city}
               </p>

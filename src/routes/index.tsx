@@ -4,5 +4,5 @@ import { InviteApp } from "@/components/invitation/invite-app";
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  return <InviteApp variant="baraat" />;
+  return <InviteApp variant="home" />;
 }

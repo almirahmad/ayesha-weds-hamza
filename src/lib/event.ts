@@ -1,4 +1,4 @@
-export type InviteVariant = "baraat" | "all" | "baraatOnly";
+export type InviteVariant = "home" | "baraat" | "all";
 
 export const EVENT = {
   bride: "Itba Ayesha",
@@ -39,10 +39,8 @@ export const EVENT = {
     "Mr. & Mrs. Safdar Hussain",
     "Mr. & Mrs. Sheikh Zeeshan",
   ],
-  specialLove: "Almir, Minha, Muhammad, Mahad, Rohan & Hanaa",
-  specialLoveLabel: "Our little peeps",
-  belovedNano: "محترمہ خورشید بانو",
-  belovedNanoUrdu: "",
+  specialLove: "Almir & Hanaa",
+  belovedNano: "Mrs. Khurshid Bano",
   contacts: [
     { name: "Haji Makhan", phone: "0306-1614928", tel: "+923061614928" },
     { name: "Rana Ahmad", phone: "0304-2463055", tel: "+923042463055" },
@@ -145,7 +143,7 @@ export const NAV = [
   { id: "family", label: "Family" },
 ] as const;
 
-export const NAV_BARAAT = [
+export const BARAAT_NAV = [
   { id: "blessings", label: "Blessings" },
   { id: "invitation", label: "Invitation" },
   { id: "schedule", label: "Schedule" },

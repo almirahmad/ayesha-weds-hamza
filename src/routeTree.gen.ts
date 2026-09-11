@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AllRouteImport } from './routes/all'
+import { Route as BaraatRouteImport } from './routes/baraat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const AllRoute = AllRouteImport.update({
   path: '/all',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BaraatRoute = BaraatRouteImport.update({
+  id: '/baraat',
+  path: '/baraat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/all': typeof AllRoute
+  '/baraat': typeof BaraatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/all': typeof AllRoute
+  '/baraat': typeof BaraatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/all': typeof AllRoute
+  '/baraat': typeof BaraatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/all'
+  fullPaths: '/' | '/all' | '/baraat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/all'
-  id: '__root__' | '/' | '/all'
+  to: '/' | '/all' | '/baraat'
+  id: '__root__' | '/' | '/all' | '/baraat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AllRoute: typeof AllRoute
+  BaraatRoute: typeof BaraatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AllRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/baraat': {
+      id: '/baraat'
+      path: '/baraat'
+      fullPath: '/baraat'
+      preLoaderRoute: typeof BaraatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AllRoute: AllRoute,
+  BaraatRoute: BaraatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
