@@ -264,6 +264,22 @@
   line-height: 1.2;
 }
 
+.peeps-script {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.4rem, 4.2vw, 1.9rem);
+  color: var(--color-burgundy);
+  line-height: 1.4;
+}
+
+.nano-urdu {
+  font-family: var(--font-urdu);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 2.2;
+  direction: rtl;
+  color: var(--color-ink);
+}
+
 .arabic-block {
   font-family: var(--font-arabic);
   font-size: var(--text-arabic);

@@ -40,7 +40,6 @@ export const EVENT = {
     "Mr. & Mrs. Sheikh Zeeshan",
   ],
   specialLove: "Almir, Minha, Muhammad, Mahad, Rohan & Hanaa",
-  specialLoveLabel: "Our little peeps",
   belovedNano: "محترمہ خورشید بانو",
   contacts: [
     { name: "Haji Makhan", phone: "0306-1614928", tel: "+923061614928" },

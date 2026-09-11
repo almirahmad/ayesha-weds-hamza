@@ -46,7 +46,7 @@ export function InvitationPage({ variant = "home" }: { variant?: InviteVariant }
     : "The celebration begins in";
   const navItems = variant === "all" ? ALL_NAV : variant === "baraat" ? BARAAT_NAV : NAV;
   const footerDates =
-    variant === "all" ? "08 \u00b7 10 \u00b7 11 \u00b7 2026" : variant === "home" ? "10 \u00b7 11 \u00b7 2026" : "10 \u00b7 2026";
+    variant === "all" ? "08 · 10 · 11 · 2026" : variant === "home" ? "10 · 11 · 2026" : "10 · 2026";
 
   return (
     <div className="invite-enter relative min-h-dvh">
@@ -160,10 +160,10 @@ export function InvitationPage({ variant = "home" }: { variant?: InviteVariant }
 
           <article className="family-card mt-6">
             <p className="section-label">Special love</p>
-            <p className="section-label mt-6">Our Beloved Nano</p>
-            <p className="urdu-block mt-3 text-2xl font-semibold text-burgundy">{EVENT.belovedNano}</p>
-            <p className="section-label mt-8">{EVENT.specialLoveLabel}</p>
-            <p className="kids-script mt-3">{EVENT.specialLove}</p>
+            <p className="section-label mt-5">Our Beloved Nano</p>
+            <p className="nano-urdu mt-3">{EVENT.belovedNano}</p>
+            <p className="section-label mt-7">Our little peeps</p>
+            <p className="peeps-script mt-3">{EVENT.specialLove}</p>
           </article>
 
           <p className="section-label mt-12 text-center">Contact for guidance</p>
@@ -221,5 +221,253 @@ export function InvitationPage({ variant = "home" }: { variant?: InviteVariant }
         </footer>
       </div>
     </div>
+  );
+}
+
+function BaraatSchedule() {
+  return (
+    <Section id="schedule">
+      <p className="section-label text-center">{EVENT.ceremony}</p>
+      <h2 className="mt-3 text-center font-display text-3xl font-medium text-ink">
+        {EVENT.dateLabel}
+      </h2>
+      <Flourish className="mt-4 mb-10" />
+      <ol className="timeline-rail mx-auto max-w-md space-y-3">
+        {EVENT.schedule.map((item) => {
+          const Icon = ICONS[item.icon];
+          return (
+            <li key={item.title} className="schedule-row">
+              <span className="schedule-icon">
+                <Icon className="size-3.5" strokeWidth={1.6} />
+              </span>
+              <div className="time-col font-display text-sm font-semibold tracking-wide text-burgundy">
+                {item.time}
+              </div>
+              <div className="font-display text-base text-ink">{item.title}</div>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="mx-auto mt-8 max-w-sm text-center font-display text-sm italic text-muted">
+        Please be on time to share every moment with us.
+      </p>
+    </Section>
+  );
+}
+
+function BaraatVenue() {
+  return (
+    <Section id="venue">
+      <p className="section-label text-center">Venue</p>
+      <h2 className="mt-3 text-center font-display text-3xl font-medium text-ink">
+        {EVENT.venueName}
+      </h2>
+      <Flourish className="mt-4 mb-6" />
+      <div className="gold-frame overflow-hidden rounded-xl bg-ivory">
+        <div className="px-5 py-5 text-center">
+          <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+            <MapPin className="size-3.5" strokeWidth={1.75} />
+            Pakpattan
+          </p>
+          {EVENT.venueLines.map((line) => (
+            <p key={line} className="mt-1 font-display text-base leading-relaxed text-ink">
+              {line}
+            </p>
+          ))}
+          <a
+            href={EVENT.mapsLink}
+            target="_blank"
+            rel="noreferrer"
+            className="tap-open mx-auto mt-5 gap-2 tracking-[0.14em] normal-case"
+          >
+            <Navigation className="size-3.5" strokeWidth={1.75} />
+            Open Maps
+          </a>
+        </div>
+        <iframe
+          title="Venue map for Royal Grand Marquee, Pakpattan"
+          src={EVENT.mapsEmbed}
+          className="map-frame rounded-none"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </Section>
+  );
+}
+
+function WaleemaSection() {
+  const waleema = EVENT.waleema;
+
+  return (
+    <Section id="waleema">
+      <p className="section-label text-center">{waleema.title}</p>
+      <Flourish className="mt-4 mb-8" />
+      <p className="mx-auto max-w-md text-center font-display text-lg leading-relaxed text-ink">
+        {waleema.honor}
+      </p>
+      <p className="section-label mt-6 text-center">{waleema.marriageOf}</p>
+      <p className="waleema-couple mt-4 text-center">{EVENT.bride}</p>
+      <p className="waleema-amp mt-1 text-center" aria-hidden>
+        &
+      </p>
+      <p className="waleema-couple mt-1 text-center">{EVENT.groom}</p>
+      <p className="waleema-date mt-8 text-center font-display text-xl sm:text-2xl">
+        {waleema.dateFormal}
+      </p>
+      <p className="mt-3 text-center font-display text-base font-medium tracking-wide text-burgundy">
+        {waleema.dinner}
+      </p>
+      <Flourish className="mt-8 mb-6" />
+      <div className="gold-frame overflow-hidden rounded-xl bg-ivory">
+        <div className="px-5 py-5 text-center">
+          <p className="section-label">Venue</p>
+          <h3 className="mt-3 font-display text-2xl font-medium text-ink">
+            {waleema.venueName}
+          </h3>
+          <p className="mt-2 inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+            <MapPin className="size-3.5" strokeWidth={1.75} />
+            {waleema.venueCity}
+          </p>
+          {waleema.venueLines.map((line) => (
+            <p key={line} className="mt-1 font-display text-base leading-relaxed text-ink">
+              {line}
+            </p>
+          ))}
+          <a
+            href={waleema.mapsLink}
+            target="_blank"
+            rel="noreferrer"
+            className="tap-open mx-auto mt-5 gap-2 tracking-[0.14em] normal-case"
+          >
+            <Navigation className="size-3.5" strokeWidth={1.75} />
+            Open Maps
+          </a>
+        </div>
+        <iframe
+          title={`Venue map for ${waleema.venueName}`}
+          src={waleema.mapsEmbed}
+          className="map-frame rounded-none"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </Section>
+  );
+}
+
+function AllEvents() {
+  return (
+    <Section id="events">
+      <p className="section-label text-center">The Celebrations</p>
+      <h2 className="mt-3 text-center font-display text-3xl font-medium text-ink">
+        Three blessed gatherings
+      </h2>
+      <Flourish className="mt-4 mb-10" />
+      <div className="space-y-5">
+        {CELEBRATIONS.map((event) => {
+          const Icon = ICONS[event.icon];
+          const venue = venueById(event.venueId);
+          return (
+            <article key={event.id} className="gold-frame overflow-hidden rounded-xl bg-ivory px-5 py-7">
+              <p className="inline-flex w-full items-center justify-center gap-2 section-label">
+                <Icon className="size-3.5" strokeWidth={1.7} />
+                {event.title}
+              </p>
+              <h3 className="mt-3 text-center font-display text-2xl font-medium text-ink">
+                {event.dateLabel}
+              </h3>
+              <p className="mt-1 text-center font-display text-sm font-semibold tracking-wide text-burgundy">
+                {event.timeLabel}
+              </p>
+              <p className="mt-3 text-center font-display text-sm text-muted">
+                {venue.name}
+                <span className="mx-1.5 text-gold">·</span>
+                {venue.city}
+              </p>
+              {event.timeline.length > 0 ? (
+                <ol className="timeline-rail mx-auto mt-7 max-w-md space-y-3">
+                  {event.timeline.map((item) => {
+                    const StepIcon = ICONS[item.icon];
+                    return (
+                      <li key={item.title} className="schedule-row">
+                        <span className="schedule-icon">
+                          <StepIcon className="size-3.5" strokeWidth={1.6} />
+                        </span>
+                        <div className="time-col font-display text-sm font-semibold tracking-wide text-burgundy">
+                          {item.time}
+                        </div>
+                        <div className="font-display text-base text-ink">{item.title}</div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              ) : null}
+              {event.note ? (
+                <p className="mx-auto mt-6 max-w-sm text-center font-display text-sm italic leading-relaxed text-muted">
+                  {event.note}
+                </p>
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
+
+function AllVenues() {
+  return (
+    <Section id="venues">
+      <p className="section-label text-center">Venues</p>
+      <h2 className="mt-3 text-center font-display text-3xl font-medium text-ink">
+        Two houses of celebration
+      </h2>
+      <Flourish className="mt-4 mb-10" />
+      <div className="space-y-8">
+        {VENUES.map((venue) => (
+          <div key={venue.id} className="gold-frame overflow-hidden rounded-xl bg-ivory">
+            {venue.image ? (
+              <img
+                src={venue.image}
+                alt={venue.imageAlt}
+                className="h-52 w-full object-cover outline outline-1 -outline-offset-1 outline-ink/10 sm:h-64"
+              />
+            ) : null}
+            <div className="px-5 py-5 text-center">
+              <p className="inline-flex items-center gap-1.5 font-display text-sm tracking-[0.22em] text-gold uppercase">
+                <MapPin className="size-3.5" strokeWidth={1.75} />
+                {venue.city}
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-medium text-ink">{venue.name}</h3>
+              <p className="mt-1 font-display text-xs tracking-[0.2em] text-gold uppercase">
+                {venue.events}
+              </p>
+              {venue.lines.map((line) => (
+                <p key={line} className="mt-1 font-display text-base leading-relaxed text-ink">
+                  {line}
+                </p>
+              ))}
+              <a
+                href={venue.mapsLink}
+                target="_blank"
+                rel="noreferrer"
+                className="tap-open mx-auto mt-5 gap-2 tracking-[0.14em] normal-case"
+              >
+                <Navigation className="size-3.5" strokeWidth={1.75} />
+                Open Maps
+              </a>
+            </div>
+            <iframe
+              title={`Venue map for ${venue.name}`}
+              src={venue.mapsEmbed}
+              className="map-frame rounded-none"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 }
